@@ -7,7 +7,7 @@ with open('sample-file.txt', 'r') as file:
 tokens_unfiltered = text.split()
 
 # Convert to lowercase
-tokens_unfiltered = [tokens_unfiltered.lower() for token in tokens_unfiltered]
+tokens_unfiltered = [token.lower() for token in tokens_unfiltered]
 
 # Remove punctuation from beginning and end
 for i in range(len(tokens_unfiltered)):
