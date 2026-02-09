@@ -1,28 +1,19 @@
-import re
-from collections import Counter
-
-# Read the file
+# read file
 with open('sample-file.txt', 'r') as file:
     text = file.read()
-
-# Split into tokens (words)
-tokens = text.split()
+# Split into tokens
+tokens_unfiltered = text.split()
 
 # Convert to lowercase
-tokens = [token.lower() for token in tokens]
+tokens_unfiltered = [token_unfiltered.lower() for token in tokens_unfiltered]
 
 # Remove punctuation from beginning and end
-tokens = [re.sub(r'^[^\w]+|[^\w]+$', '', token) for token in tokens]
+for i in range(len(tokens_unfiltered)):
+    tokens_unfiltered[i] = tokens_unfiltered[i].strip('.,!?";():')
+# check for 2 letters or more
+clean_tokens = []
+for word in tokens_unfiltered:
+    if len(word) >= 2:
+        clean_tokens.append(word)
 
-# Keep only tokens with at least 2 alphabetic characters
-tokens = [token for token in tokens if sum(1 for c in token if c.isalpha()) >= 2]
-
-# Count word frequencies
-word_counts = Counter(tokens)
-
-# Get 10 most frequent words
-top_10 = word_counts.most_common(10)
-
-# Print results
-for word, count in top_10:
-    print(f"{word} -> {count}")
+tokens = clean_tokens
