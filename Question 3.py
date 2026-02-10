@@ -5,7 +5,7 @@ with open('sample-file.txt', 'r') as file:
 
     punctuation = ".,!?;:'\"()-[]{}-"
 
-    # Clean each line
+    # Clean 
     for line in file:
         original_line = line.rstrip("\n")
         original_lines.append(original_line)
@@ -33,7 +33,7 @@ for i, cleaned_line in enumerate(cleaned_lines):
     groups[cleaned_line].append((i + 1, original_lines[i]))
 
 
-# Filter to only groups with 2+ near-duplicates
+# Filter
 duplicate_sets = []
 for cleaned_line, line_list in groups.items():
     if len(line_list) >= 2:
