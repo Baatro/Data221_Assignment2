@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('student.csv')
+students_df = pd.read_csv('student.csv')
 
 # Create grade_band column
 def assign_grade_band(grade):
@@ -11,10 +11,11 @@ def assign_grade_band(grade):
     else:
         return 'High'
 
-df['grade_band'] = df['grade'].apply(assign_grade_band)
+students_df['grade_band'] = students_df['grade'].apply(assign_grade_band)
 
 # Create grouped summary table
-summary = df.groupby('grade_band').agg(
+# Used copilot to help with this chunk of code
+summary = students_df.groupby('grade_band').agg(
     number_of_students=('grade_band', 'size'),
     average_absences=('absences', 'mean'),
     internet_access_percentage=('internet', lambda x: (x.sum() / len(x)) * 100)
