@@ -1,15 +1,16 @@
-# first chunk of code copied from question 1
-
-# read file
 with open('sample-file.txt', 'r') as file:
     text = file.read()
 # Split into tokens
+tokens = text.split()
 tokens_unfiltered = text.split()
 
 # Convert to lowercase
-tokens_unfiltered = [token_unfiltered.lower() for token in tokens_unfiltered]
+tokens = [token.lower() for token in tokens]
+tokens_unfiltered = [token.lower() for token in tokens_unfiltered]
 
 # Remove punctuation from beginning and end
+for i in range(len(tokens)):
+    tokens[i] = tokens[i].strip('.,!?";():')
 for i in range(len(tokens_unfiltered)):
     tokens_unfiltered[i] = tokens_unfiltered[i].strip('.,!?";():')
 # check for 2 letters or more
@@ -44,21 +45,3 @@ for i in range(5):
         if bigram_counts_copy[bigram] > max_count:
             max_count = bigram_counts_copy[bigram]
             max_bigram = bigram
-    if max_bigram is not None:
-        sorted_bigrams.append((max_bigram, max_count))
-        del bigram_counts_copy[max_bigram]
-
-# Print top 5
-print("Top 5 most common bigrams:")
-counter = 1
-for bigram_tuple in sorted_bigrams:
-    bigram = bigram_tuple[0]
-    count = bigram_tuple[1]
-    print(f"{counter}. {bigram}: {count}")
-    counter = counter + 1
-
-
-
-
-
-
